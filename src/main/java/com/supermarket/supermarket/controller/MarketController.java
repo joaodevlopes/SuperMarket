@@ -28,7 +28,7 @@ public class MarketController {
     }
 
     @PutMapping
-    List<Market> update(@RequestBody Market market){
+    List<Market> update(@RequestBody @Valid Market market){
         return marketService.update(market);
     }
 
