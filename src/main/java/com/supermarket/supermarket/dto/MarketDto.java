@@ -1,46 +1,35 @@
-package com.supermarket.supermarket.entity;
+package com.supermarket.supermarket.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import lombok.Data;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import com.supermarket.supermarket.entity.MarketEntity;
+import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDate;
 
-@Data
-@Entity
-@Table(name = "market")
-public class Market {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
-    private Long id;
+public class MarketDto {
 
-    @NotBlank
+    private Long id;
     private String name;
-    @NotBlank
     private String description;
-    @NotNull
-    @Positive
     private Double price;
-    @NotNull
-    @Min(value = 0)
     private Integer quantity;
-    @NotNull
     private LocalDate date;
 
-    public Market() {
+    //converter entity para DTO
+    public MarketDto(MarketEntity marketEntity) {
+        BeanUtils.copyProperties(marketEntity, this);
     }
-    public Market(Long id, String name, String description, double price, int quantity, LocalDate date) {
+
+    public MarketDto(Long id, String name, String description, Double price, Integer quantity, LocalDate date) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.date = date;
+    }
+
+    public MarketDto(){
     }
 
     public Long getId() {
@@ -67,19 +56,19 @@ public class Market {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

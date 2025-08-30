@@ -1,13 +1,14 @@
 package com.supermarket.supermarket.service;
 //logica do nosso negocio
 
-import com.supermarket.supermarket.entity.Market;
-import com.supermarket.supermarket.exceptions.ResourceNotFoundException;
+import com.supermarket.supermarket.dto.MarketDto;
+import com.supermarket.supermarket.entity.MarketEntity;
 import com.supermarket.supermarket.repository.MarketRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MarketService {
@@ -19,35 +20,54 @@ public class MarketService {
         this.marketRepository = marketRepository;
     }
 
-    public List<Market> create(Market market){
-        marketRepository.save(market);
-        return list();
+    //metodo para conversão para DTO:
+    private MarketDto toDTO(MarketEntity market){
+        return new MarketDto(
+                market.getId(),
+                market.getName(),
+                market.getDescription(),
+                market.getPrice(),
+                market.getQuantity(),
+                market.getDate()
+        );
     }
 
-    public List<Market> list(){
+    //METODO PRA CRIAR
+    public MarketDto create(MarketDto marketDto){
+        MarketEntity marketEntity = new MarketEntity(marketDto);
+        return new MarketDto(marketRepository.save(marketEntity));
+    }
+
+    //LISTAR TODOS
+    public List<MarketDto> list(){
         Sort sort = Sort.by(
                 Sort.Order.asc("name"),
                 Sort.Order.asc("date"),
                 Sort.Order.desc("quantity")
         );
-        return marketRepository.findAll(sort);
-
+       return marketRepository.findAll(sort)
+               .stream()
+               .map(this::toDTO)
+               .collect(Collectors.toList());
     }
 
-    public List<Market> update(Market market){
-        if(market.getId() == null || !marketRepository.existsById(market.getId())){
-            throw new ResourceNotFoundException("Produto com o id: " + market.getId() + " não encontrado para atualização.");
-        }
-
-        marketRepository.save(market);
-        return list();
+    //ATUALIZAR DADOS
+    public MarketDto update(MarketDto marketDto){
+        MarketEntity marketEntity = new MarketEntity(marketDto);
+        return new MarketDto(marketRepository.save(marketEntity));
     }
 
-    public List<Market> delete(Long id){
-        if(!marketRepository.existsById(id)){
-            throw new ResourceNotFoundException("Produto com o id: " + id + " não encontrado.");
-        }
-        marketRepository.deleteById(id);
-        return list();
+    //DELETAR DADOS
+    public void delete(Long id){
+        MarketEntity marketEntity = marketRepository.findById(id).orElseThrow(() -> new RuntimeException(("Produto não encontrado!")));
+        marketRepository.delete(marketEntity);
+    }
+
+    //BUSCAR POR NOME
+    public List<MarketDto> searchByName(String name){
+        return marketRepository.findByNameContainingIgnoreCase(name)
+                .stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 }
