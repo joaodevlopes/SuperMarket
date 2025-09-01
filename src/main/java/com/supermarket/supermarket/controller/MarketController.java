@@ -1,8 +1,10 @@
 package com.supermarket.supermarket.controller;
 
-import com.supermarket.supermarket.dto.MarketDto;
+import com.supermarket.supermarket.dto.MarketCreateDto;
+import com.supermarket.supermarket.dto.MarketResponseDto;
 import com.supermarket.supermarket.service.MarketService;
-import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,36 +12,40 @@ import java.util.List;
 @RestController
 @RequestMapping("/market")
 public class MarketController {
-    //injetar a repository
-    private MarketService marketService;
+    //injetar o service
+    private final MarketService marketService;
 
     public MarketController(MarketService marketService) {
         this.marketService = marketService;
     }
 
     @GetMapping
-    List<MarketDto> list(){
+    public List<MarketResponseDto> list(){
         return marketService.list();
-    }
-    @GetMapping("/search")
-    public List<MarketDto> search(@RequestParam String name){
-        return marketService.searchByName(name);
     }
 
     @PostMapping
-    public void crete(@RequestBody MarketDto marketDto){
-        marketService.create(marketDto);
+    @ResponseStatus(HttpStatus.CREATED)
+    public MarketResponseDto create(@Valid @RequestBody MarketCreateDto dto){
+        return marketService.create(dto);
     }
 
 
-    @PutMapping
-    public MarketDto update(@RequestBody MarketDto marketDto){
-        return marketService.update(marketDto);
+    @PutMapping("/{id}")
+    public MarketResponseDto update(@PathVariable Long id, @Valid @RequestBody MarketCreateDto dto ){
+        return marketService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id")Long id){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
         marketService.delete(id);
-        return ResponseEntity.ok().build();
     }
+    @GetMapping("/search")
+    public List<MarketResponseDto> search(@RequestParam String name){
+        return marketService.searchByName(name);
+    }
+
+
+
 }

@@ -1,7 +1,7 @@
 package com.supermarket.supermarket.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.supermarket.supermarket.dto.MarketDto;
+import com.supermarket.supermarket.dto.MarketCreateDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -35,8 +35,8 @@ public class MarketEntity {
     private LocalDate date;
 
     //converter DTO para entity
-    public MarketEntity(MarketDto marketDto) {
-        BeanUtils.copyProperties(marketDto, this);
+    public MarketEntity(MarketCreateDto marketCreateDto) {
+        BeanUtils.copyProperties(marketCreateDto, this);
     }
     public MarketEntity() {
     }
