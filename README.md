@@ -84,5 +84,6 @@ Notificações de sucesso/erro (toast)
 ### COMO RODAR LOCALMENTE:
 
 1 - CLONAR O REPOSITTÓRIO 
-git clone https://github.com/seu-usuario/SuperMarket.git
+
 cd SuperMarket
+- **CLONAR O REPOSITTÓRIO :** `git clone https://github.com/seu-usuario/SuperMarket.git`
