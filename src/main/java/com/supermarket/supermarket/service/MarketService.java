@@ -4,6 +4,7 @@ package com.supermarket.supermarket.service;
 import com.supermarket.supermarket.dto.MarketCreateDto;
 import com.supermarket.supermarket.dto.MarketResponseDto;
 import com.supermarket.supermarket.entity.MarketEntity;
+import com.supermarket.supermarket.exception.ResouceNotFoundException;
 import com.supermarket.supermarket.mapper.MarketMapper;
 import com.supermarket.supermarket.repository.MarketRepository;
 import org.springframework.data.domain.Sort;
@@ -38,12 +39,12 @@ public class MarketService {
         return marketRepository.findAll(sort)
                 .stream()
                 .map(marketMapper::MarketEntitytoResponseDto) // transforma cada entity em responseDto
-                .toList();// terminal: executa e retorna List (Java16+, imutável)
+                .toList();// executa e retorna List
     }
 
     //UPDATE
     public MarketResponseDto update(Long id, MarketCreateDto dto){
-        MarketEntity existing = marketRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+        MarketEntity existing = marketRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("Produto com o id: " +  id + " não encontrado."));
         existing.setName(dto.name());
         existing.setDescription(dto.description());
         existing.setPrice(dto.price());
@@ -56,7 +57,7 @@ public class MarketService {
 
     //DELETE
     public void delete(Long id){
-        MarketEntity entity = marketRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+        MarketEntity entity = marketRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("Produto com o id: " + id + " não encontrado."));
         marketRepository.delete(entity);
     }
 
