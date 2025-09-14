@@ -46,28 +46,27 @@ API RESTful para gerenciamento de estoque de supermercado, com frontend simples 
 ```
 ### Estrutura do projeto
 
-src/main/java/com/supermarket/supermarket
-│
-├── controller
+src/main/java/com/supermarket/supermarket/
+├── controller/
 │   └── MarketController.java       # Endpoints REST
-├── service
+├── service/
 │   └── MarketService.java          # Lógica de negócio
-├── repository
+├── repository/
 │   └── MarketRepository.java       # Interface JPA
-├── entity
+├── entity/
 │   └── MarketEntity.java           # Entidade JPA
-├── dto
+├── dto/
 │   ├── MarketCreateDto.java        # Dados de entrada
 │   ├── MarketResponseDto.java      # Dados de saída
 │   └── ApiError.java               # DTO de erro
-├── mapper
+├── mapper/
 │   └── MarketMapper.java           # MapStruct mapeamentos
-├── exception
+├── exception/
 │   ├── GlobalExceptionHandler.java # Handler centralizado
-│   └── ResouceNotFoundException.java
-└── CORS
+│   └── ResourceNotFoundException.java
+└── CORS/
     └── CorsConfig.java             # Configuração de CORS
-
+    
 ### Front end
 Interface em HTML + CSS + JS que consome os endpoints do backend:
 
@@ -110,18 +109,18 @@ java -jar target/supermarket-0.0.1-SNAPSHOT.jar
 O backend ficará disponível em:
 http://localhost:8080/market
 
-4. Rodar o Frontend
+### 4. Rodar o Frontend
 
 Abrir index.html diretamente no navegador
 ou
 
 Usar o Live Server (VSCode) → acessa em: http://localhost:5500
 
-📹 Demonstração
+### 📹 Demonstração
 
 Adicionar prints ou link de vídeo mostrando o sistema em funcionamento.
 
-📌 Aprendizados
+### 📌 Aprendizados
 
 DTOs: separar entrada (CreateDto) e saída (ResponseDto)
 
