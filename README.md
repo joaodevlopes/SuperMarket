@@ -81,8 +81,8 @@ Busca em tempo real por nome
 
 Notificações de sucesso/erro (toast)
 
-###COMO RODAR LOCALMENTE:
+### COMO RODAR LOCALMENTE:
 
 1 - CLONAR O REPOSITTÓRIO 
-git clone https://github.com/seu-usuario/supermarket-api.git
-cd supermarket-api
+git clone https://github.com/seu-usuario/SuperMarket.git
+cd SuperMarket
