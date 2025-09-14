@@ -82,7 +82,15 @@ Busca em tempo real por nome
 Notificações de sucesso/erro (toast)
 
 ### COMO RODAR LOCALMENTE:
-### 1: 
+### 1. Clonar o repositório
 - **CLONAR O REPOSITTÓRIO :** `git clone https://github.com/seu-usuario/SuperMarket.git`
 - **IR PARA O LOCAL DO ARQUIVO :** `cd supermarket-api`
+### 2. Configurar o MySQL
+Crie o banco de dados supermarket no MySQL e configure suas credenciais em src/main/resources/application.properties:
+- **spring.datasource.url=jdbc:mysql://localhost:3306/supermarket
+spring.datasource.username=SEU_USUARIO
+spring.datasource.password=SUA_SENHA
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
 
