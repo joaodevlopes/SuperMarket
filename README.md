@@ -46,26 +46,26 @@ API RESTful para gerenciamento de estoque de supermercado, com frontend simples 
 ```
 ### Estrutura do projeto
 
-src/main/java/com/supermarket/supermarket/
-  controller/
-    MarketController.java       # Endpoints REST
-  service/
-    MarketService.java          # Lógica de negócio
-  repository/
-    MarketRepository.java       # Interface JPA
-  entity/
-    MarketEntity.java           # Entidade JPA
-  dto/
-    MarketCreateDto.java        # Dados de entrada
-    MarketResponseDto.java      # Dados de saída
-    ApiError.java               # DTO de erro
-  mapper/
-    MarketMapper.java           # MapStruct mapeamentos
-  exception/
-    GlobalExceptionHandler.java # Handler centralizado
-    ResourceNotFoundException.java
-  CORS/
-    CorsConfig.java             # Configuração de CORS
+- `src/main/java/com/supermarket/supermarket/`
+  - `controller/`
+    - `MarketController.java` – Endpoints REST
+  - `service/`
+    - `MarketService.java` – Lógica de negócio
+  - `repository/`
+    - `MarketRepository.java` – Interface JPA
+  - `entity/`
+    - `MarketEntity.java` – Entidade JPA
+  - `dto/`
+    - `MarketCreateDto.java` – Dados de entrada
+    - `MarketResponseDto.java` – Dados de saída
+    - `ApiError.java` – DTO de erro
+  - `mapper/`
+    - `MarketMapper.java` – MapStruct mapeamentos
+  - `exception/`
+    - `GlobalExceptionHandler.java` – Handler centralizado
+    - `ResourceNotFoundException.java`
+  - `CORS/`
+    - `CorsConfig.java` – Configuração de CORS
     
 ### Front end
 Interface em HTML + CSS + JS que consome os endpoints do backend:
