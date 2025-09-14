@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Estoque - Supermercado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">🛒 Gerenciador de Estoque</h1>
+            <div class="nav-subtitle">Sistema de Controle de Produtos</div>
+        </div>
+    </nav>
+
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- Seção de Busca -->
+        <div class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Buscar produto por nome..." 
+                    class="search-input"
+                >
+                <button id="searchBtn" class="btn btn-search">🔍 Buscar</button>
+                <button id="clearSearchBtn" class="btn btn-secondary">✕ Limpar</button>
+            </div>
+        </div>
+
+        <!-- Formulário de Adicionar Produto -->
+        <div class="form-section">
+            <div class="form-card">
+                <h2>Adicionar Novo Produto</h2>
+                <form id="productForm" class="product-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName">Nome do Produto</label>
+                            <input type="text" id="productName" required placeholder="Ex: Arroz Integral 5kg" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="productQuantity">Quantidade</label>
+                            <input type="number" id="productQuantity" required min="0" placeholder="Ex: 50" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Preço (R$)</label>
+                            <input type="number" id="productPrice" required min="0" step="0.01" placeholder="Ex: 25.90" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productDescription">Descrição</label>
+                            <input type="text" id="productDescription" placeholder="Ex: Pacote de arroz integral" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="productDate">Data</label>
+                            <input type="date" id="productDate" class="form-input">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large">➕ Adicionar Produto</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabela de Produtos -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2>Lista de Produtos</h2>
+                <div class="table-actions">
+                    <button id="refreshBtn" class="btn btn-secondary">🔄 Atualizar Lista</button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="productsTable" class="products-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Preço (R$)</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody"></tbody>
+                </table>
+                <div id="emptyMessage" class="empty-message" style="display: none;">
+                    <div class="empty-icon">📦</div>
+                    <h3>Nenhum produto encontrado</h3>
+                    <p>Adicione produtos ao estoque para começar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Produto -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Produto</h2>
+                <span id="closeModal" class="close">&times;</span>
+            </div>
+            <form id="editProductForm" class="product-form">
+                <input type="hidden" id="editProductId">
+                <div class="form-group">
+                    <label for="editProductName">Nome do Produto</label>
+                    <input type="text" id="editProductName" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="editProductQuantity">Quantidade</label>
+                    <input type="number" id="editProductQuantity" required min="0" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="editProductPrice">Preço (R$)</label>
+                    <input type="number" id="editProductPrice" required min="0" step="0.01" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="editProductDescription">Descrição</label>
+                    <input type="text" id="editProductDescription" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="editProductDate">Data</label>
+                    <input type="date" id="editProductDate" class="form-input">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">💾 Salvar Alterações</button>
+                    <button type="button" id="cancelEdit" class="btn btn-secondary">❌ Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
