@@ -86,14 +86,16 @@ Notificações de sucesso/erro (toast)
 - **IR PARA O LOCAL DO ARQUIVO :** `cd supermarket-api`
 ## 2. Configurar o MySQL
 Crie o banco de dados supermarket no MySQL e configure suas credenciais em src/main/resources/application.properties:
-- **spring.datasource.url=jdbc:mysql://localhost:3306/supermarket
-spring.datasource.username=SEU_USUARIO
-spring.datasource.password=SUA_SENHA
+# Configuração do banco de dados
+spring.datasource.url=jdbc:mysql://localhost:3306/supermarket
+spring.datasource.username=SEU_USUARIO_AQUI
+spring.datasource.password=SUA_SENHA_AQUI
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
+# Configuração JPA
 spring.jpa.hibernate.ddl-auto=update
-Substitua SEU_USUARIO e SUA_SENHA pelos dados do seu MySQL. 
-
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
 Rodar o Backend
 
 Usando Maven:
