@@ -93,4 +93,43 @@ spring.datasource.password=SUA_SENHA
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 spring.jpa.hibernate.ddl-auto=update
+Substitua SEU_USUARIO e SUA_SENHA pelos dados do seu MySQL. 
+
+Rodar o Backend
+
+Usando Maven:
+
+mvn spring-boot:run
+
+
+Ou, se já tiver o .jar gerado:
+
+java -jar target/supermarket-0.0.1-SNAPSHOT.jar
+
+
+O backend ficará disponível em:
+http://localhost:8080/market
+
+4. Rodar o Frontend
+
+Abrir index.html diretamente no navegador
+ou
+
+Usar o Live Server (VSCode) → acessa em: http://localhost:5500
+
+📹 Demonstração
+
+Adicionar prints ou link de vídeo mostrando o sistema em funcionamento.
+
+📌 Aprendizados
+
+DTOs: separar entrada (CreateDto) e saída (ResponseDto)
+
+Bean Validation: validar dados antes de persistir
+
+Tratamento centralizado de erros: respostas JSON padronizadas com mensagens claras
+
+Padrão em camadas: Controller → Service → Repository
+
+Integração Front + Back: fetch() e JSON
 
