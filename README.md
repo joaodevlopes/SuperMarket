@@ -118,9 +118,6 @@ ou
 
 Usar o Live Server (VSCode) → acessa em: http://localhost:5500
 
-### 📹 Demonstração
-
-Adicionar prints ou link de vídeo mostrando o sistema em funcionamento.
 
 ### 📌 Aprendizados
 
