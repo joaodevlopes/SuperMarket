@@ -25,6 +25,13 @@ API RESTful para gerenciamento de estoque de supermercado, com frontend simples 
 
 ---
 
+## Conceitos e práticas aplicadas
+- Arquitetura em camadas (Controller, Service, Repository)
+- Criação de APIs REST com Spring Boot
+- Persistência de dados com JPA/Hibernate
+- Validações e tratamento de erros
+- Versionamento de código com Git/GitHub
+
 ## ⚙️ Funcionalidades
 
 - **Criar produto:** `POST /market`
